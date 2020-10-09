@@ -28,7 +28,7 @@ class LoginController extends Controller
                 return 'tournament';
             default:
                 
-                return 'home';
+                return '';
         }
     }
     /**

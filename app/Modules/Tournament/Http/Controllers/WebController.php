@@ -16,7 +16,7 @@ class WebController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showUserIndexTournament()
+    public function showUserListTournament()
     {
         $tournament=Tournament::orderBy('created_at','desc')->paginate(8);
         return view("Tournament::welcome")->with('tournament',$tournament);
@@ -48,14 +48,20 @@ class WebController extends Controller
             'nbTree' => 'required',
             'price' => 'required']);
 
+            $playersNumber=$request->input('nbPlayers');
+            $treeNumber=$request->input('nbTree');
+            $matchsNumber=$playersNumber*pow(2,($treeNumber-1));
+            
             $tournament = new Tournament;
             $tournament->title = $request->input('title');
             $tournament->description= $request->input('description');
             $tournament->nbPlayers = $request->input('nbPlayers');
             $tournament->nbTree =$request->input('nbTree');
+            $tournament->matchsNumber=$matchsNumber;
             $tournament->idOrganizer=auth()->user()->id;
+
             $tournament->price = $request->input('price');
             $tournament->save();
-            return redirect('Tournament')->with('success', 'Tournament created');
+            return redirect('tournament')->with('success', 'Tournament created');
         }
 }

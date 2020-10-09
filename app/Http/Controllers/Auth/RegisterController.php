@@ -36,7 +36,7 @@ class RegisterController extends Controller
                 return 'tournament';
             default:
                 
-                return 'home';
+                return '';
         }
     }
     /**

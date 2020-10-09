@@ -44,9 +44,10 @@
         </style>
     </head>
     <body>
+        <div class="container">
         @extends('layouts.header')
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand" href="#">Tournament</a>
+            <a class="navbar-brand" href="{{ route('showUserListTournament') }}">Tournament</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,7 +55,7 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('showUserIndexTournament') }}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('showUserListTournament') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('showUserCreateTournament') }}">Create Tournoi</a>
@@ -92,36 +93,69 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="container">
-                <div class="card-deck">
-                    
-                    @foreach ($tournament as $tour)
-                    <div class="card">
-                      <img class="card-img-top" src="..." alt="TOURNOI">
-                      <div class="card-body">
-                        <h5 class="card-title">{{$tour->title}}</h5>
-                      <p class="card-text">{{$tour->description}}</p>
-                      <a href="" class="btn btn-success">JOIN</a>
-                      </div>
-                      <div class="card-footer">
-                      <small class="text-muted">Numbers of Players
-                <?php
-                    $nbTrees=$tour->nbTree;
-
-                    $nbPlayersPerMatch=$tour->nbPlayers;
-                    $nbPlayers=$nbPlayersPerMatch*pow(2,($nbTrees-1));
-                    echo  $nbPlayers;
-                ?>
+            
 
 
-                      </small>
-                      </div>
-                    </div>
-                  @endforeach
+
+
+
+
+        @if(count($tournament)>0)
+        <div class="row">
+          @foreach ($tournament as $tour)
+		
+         <div class="col-xl-3 col-lg-4 col-md-6  col-sm-6 col-4.text-center.ml-3  mt-3">
+             <div class="card " style="height: 450px">    
+              <div class="card-header bg-dark text-light text-center" style="height: 70px"><h4>{{$tour->title}}</h4></div>
+                 <div class="card-body">
+		   
+                 <div class="text-center">{{$tour->description}}
+                    <hr>
+                 <p >Numbers of Players {{$tour->matchsNumber}}</p>
+                
                 </div>
-                </div>
-            </div>
+            <hr>
+
+          
+            <a href="" class="btn btn-success float-center ">Rejoindre</a>
+          </div>
         </div>
+      </div>
+
+
+
+      @endforeach
+</div>
+<hr>
+
+</div>
+</div>
+</div>
+
+
+    
+  
+@endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </body>
 </html>
-
 
