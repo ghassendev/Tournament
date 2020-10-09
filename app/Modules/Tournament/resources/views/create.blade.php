@@ -1,5 +1,5 @@
 <html>
-@extends('layouts.app')
+@extends('layouts.header')
 
 
 <body>
