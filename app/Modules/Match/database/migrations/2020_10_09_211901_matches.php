@@ -13,7 +13,12 @@ class Matchs extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('matches', function (Blueprint $table) {
+            $table->id();
+            $table->integer('playerId');
+            $table->integer('TournamentId');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Tournoi</title>
+        <title>Tournament</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -115,9 +115,12 @@
                 
                 </div>
             <hr>
-
-          
-            <a href="" class="btn btn-success float-center ">Rejoindre</a>
+            <form action="{{ route('handlerUserJoinTournement') }}" method="POST">
+                @csrf
+            <input type="hidden" name="userId" value="{{Auth::user()->id}}" >
+            <input type="hidden" name="tournamentId" value="{{$tour->id}}" >
+            <input type="submit" class="btn btn-success float-center" value="JOIN" >
+            </form>
           </div>
         </div>
       </div>
@@ -133,8 +136,6 @@
 </div>
 
 
-    
-  
 @endif
 
 
