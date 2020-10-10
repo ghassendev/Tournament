@@ -112,11 +112,27 @@
                  <p >Numbers of Players: {{$tournament->playerNumber}}</p>
                  <p >Numbers of matchs: {{$tournament->matchsNumber}}</p>
                  <p>Numbers of joined Players:{{$subscriberNumber}} </p>
-                 @foreach ($playersID as $player)
-                 
-                 <p>Players Id: {{$player->playerId}}</p>
+                 <form action="" method="post">
+                    <select name="" id="">
+                        @foreach ($playersID as $player)
+                        <option><p>Players Id: {{$player->playerId}}</p></option>
+                        @endforeach
+                        
+                    </select>
+                    <br>
+                    <select name="" id="">
+                        @for ($i = 0; $i < $count; $i++)
+                            
+                        @endfor
+                        <option><p>MatchNumber</p></option>
+                        
+                        
+                    </select>
+                   
+             
+                 </form>
                      
-                 @endforeach
+                 
                 </div>
             <hr>
           

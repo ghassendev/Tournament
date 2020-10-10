@@ -40,6 +40,7 @@ class MatchController extends Controller
             $match = new Match;
             $match->playerId=$request->input('userId');
             $match->TournamentId=$request->input('tournamentId');
+            
             $match->save();
             return redirect('tournament');
         }
