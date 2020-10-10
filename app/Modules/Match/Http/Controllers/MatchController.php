@@ -20,16 +20,18 @@ class MatchController extends Controller
         return view("Match::welcome");
     }
     
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
 
     public function handlerUserJoinTournement(Request $request){
          
-
-
                 if(Match::where('playerId',  $request->input('userId'))->where('TournamentId', 'LIKE', $request->input('tournamentId'))->count() > 0) {
-            
-                    return redirect('');
-                                        
+                    return redirect('');                               
                 }       
                 else{
                 $match = new Match;
