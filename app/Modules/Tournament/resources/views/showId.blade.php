@@ -112,8 +112,9 @@
                  <p >Numbers of Players: {{$tournament->playerNumber}}</p>
                  <p >Numbers of matchs: {{$tournament->matchsNumber}}</p>
                  <p>Numbers of joined Players:{{$subscriberNumber}} </p>
-                 @foreach ($playersName as $player)
-                 <p>Players Name: {{$player->name}}</p>
+                 @foreach ($playersID as $player)
+                 
+                 <p>Players Id: {{$player->playerId}}</p>
                      
                  @endforeach
                 </div>

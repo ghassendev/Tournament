@@ -108,20 +108,18 @@ class WebController extends Controller
         if(auth()->user()->organizer==1){
             $subscriberNumber=Match::where('TournamentId', $id)->count() ;
             $playersID=Match::where('TournamentId', $id)->get();
-        //     foreach ($playersID as $id) {
-        //     $playersName[]=User::findOrFail($id);
-             
-        //  }    
-
-             $playersName=User::all()->where('id',1);
+            
+            $playersName=User::all()->where('id',$playersID);
             $tournament=Tournament::find($id);
-            return view("Tournament::showId",compact('subscriberNumber','tournament','playersName'));
+            return view("Tournament::showId",compact('subscriberNumber','tournament','playersName','playersID'));
         }
         else{
             return redirect ('tournament');
         }
 
     }
+
+    
 
 
 
