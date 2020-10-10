@@ -48,15 +48,18 @@ class WebController extends Controller
             'nbTree' => 'required',
             'price' => 'required']);
 
-            $playersNumber=$request->input('nbPlayers');
+            $playersNumberPerMatch=$request->input('nbPlayers');
             $treeNumber=$request->input('nbTree');
-            $matchsNumber=$playersNumber*pow(2,($treeNumber-1));
+            
+            $matchsNumber=pow(2,$treeNumber)-1;
+            $playerNumber=$playersNumberPerMatch*pow(2,($treeNumber-1));
             
             $tournament = new Tournament;
             $tournament->title = $request->input('title');
             $tournament->description= $request->input('description');
             $tournament->nbPlayers = $request->input('nbPlayers');
             $tournament->nbTree =$request->input('nbTree');
+            $tournament->playerNumber=$playerNumber;
             $tournament->matchsNumber=$matchsNumber;
             $tournament->idOrganizer=auth()->user()->id;
 

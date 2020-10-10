@@ -30,16 +30,22 @@ class MatchController extends Controller
 
     public function handlerUserJoinTournement(Request $request){
          
-                if(Match::where('playerId',  $request->input('userId'))->where('TournamentId', 'LIKE', $request->input('tournamentId'))->count() > 0) {
+                
+            if(auth()->user()->organizer==0){
+                if(Match::where('playerId',$request->input('userId'))->where('TournamentId', 'LIKE', $request->input('tournamentId'))->count() > 0) {
                     return redirect('');                               
                 }       
-                else{
-                $match = new Match;
-                $match->playerId=$request->input('userId');
-                $match->TournamentId=$request->input('tournamentId');
-                $match->save();
-                return redirect('tournament');
-            }}
+            
+            else{
+            $match = new Match;
+            $match->playerId=$request->input('userId');
+            $match->TournamentId=$request->input('tournamentId');
+            $match->save();
+            return redirect('tournament');
+        }
+    }
+    return redirect(''); 
+    }
 
 
     }

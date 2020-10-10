@@ -19,6 +19,7 @@ class CreateTournamentTable extends Migration
             $table->text('description');
             $table->integer('nbPlayers');
             $table->integer('nbTree');
+            $table->integer('playerNumber');
             $table->integer('matchsNumber');
             $table->integer('idOrganizer');
             $table->float('price');

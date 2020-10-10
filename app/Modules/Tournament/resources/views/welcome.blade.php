@@ -111,8 +111,8 @@
 		   
                  <div class="text-center">{{$tour->description}}
                     <hr>
-                 <p >Numbers of Players {{$tour->matchsNumber}}</p>
-                
+                 <p >Numbers of Players {{$tour->playerNumber}}</p>
+                 <p >Numbers of matchs {{$tour->matchsNumber}}</p>
                 </div>
             <hr>
             <form action="{{ route('handlerUserJoinTournement') }}" method="POST">
@@ -139,24 +139,5 @@
 @endif
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </body>
 </html>
-
