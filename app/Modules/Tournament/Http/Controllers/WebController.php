@@ -86,11 +86,7 @@ class WebController extends Controller
 
     public function showUserTournament(){
 
-       
-
-
-        if(auth()->user()->organizer==1){
-             
+        if(auth()->user()->organizer==1){             
             $tournament=Tournament::all()->where('idOrganizer',auth()->user()->id);
             return view("Tournament::show")->with('tournament',$tournament);
         }
@@ -125,7 +121,7 @@ class WebController extends Controller
             return redirect ('tournament');
         }
 
-}
+    }
 
 
 
