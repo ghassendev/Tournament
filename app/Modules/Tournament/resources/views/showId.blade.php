@@ -97,16 +97,8 @@
             <div class="content">
                 <div class="container">
             
-
-
-
-
-
-        
-
                   @isset($tournament)
-                      
-                 
+                         
         
         <div class="row">
         
@@ -120,6 +112,10 @@
                  <p >Numbers of Players: {{$tournament->playerNumber}}</p>
                  <p >Numbers of matchs: {{$tournament->matchsNumber}}</p>
                  <p>Numbers of joined Players:{{$subscriberNumber}} </p>
+                 @foreach ($playersName as $player)
+                 <p>Players Name: {{$player->name}}</p>
+                     
+                 @endforeach
                 </div>
             <hr>
           

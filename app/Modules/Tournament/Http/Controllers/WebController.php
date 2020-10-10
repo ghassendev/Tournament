@@ -6,11 +6,11 @@ use App\Modules\Tournament\Models\Tournament;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Match\Models\Match;
+use App\User;
 
 class WebController extends Controller
 {
 
-  
   
     /**
      * Display the module welcome screen
@@ -111,8 +111,15 @@ class WebController extends Controller
 
         if(auth()->user()->organizer==1){
             $subscriberNumber=Match::where('TournamentId', $id)->count() ;
+            $playersID=Match::where('TournamentId', $id)->get();
+        //     foreach ($playersID as $id) {
+        //     $playersName[]=User::findOrFail($id);
+             
+        //  }    
+
+             $playersName=User::all()->where('id',1);
             $tournament=Tournament::find($id);
-            return view("Tournament::showId",compact('subscriberNumber','tournament'));
+            return view("Tournament::showId",compact('subscriberNumber','tournament','playersName'));
         }
         else{
             return redirect ('tournament');
