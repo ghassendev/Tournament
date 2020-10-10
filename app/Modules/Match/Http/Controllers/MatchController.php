@@ -26,7 +26,7 @@ class MatchController extends Controller
          
 
 
-                if(Match::where('playerId', 'LIKE', $request->input('userId'))->where('TournamentId', $request->input('tournamentId'))->count() > 0) {
+                if(Match::where('playerId',  $request->input('userId'))->where('TournamentId', 'LIKE', $request->input('tournamentId'))->count() > 0) {
             
                     return redirect('');
                                         
