@@ -58,7 +58,7 @@
                         <a class="nav-link" href="{{ route('showUserListTournament') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('showUserCreateTournament') }}">Create  Tournament</a>
+                        <a class="nav-link" href="{{ route('showUserCreateTournament') }}">Create Tournament </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('showUserTournament') }}">show your  Tournament </a>
@@ -102,35 +102,34 @@
 
 
 
+        
 
-        @if(count($tournament)>0)
+                  @isset($tournament)
+                      
+                 
+        
         <div class="row">
-          @foreach ($tournament as $tour)
-		
+        
          <div class="col-xl-3 col-lg-4 col-md-6  col-sm-6 col-4.text-center.ml-3  mt-3">
              <div class="card " style="height: 450px">    
-              <div class="card-header bg-dark text-light text-center" style="height: 70px"><h4>{{$tour->title}}</h4></div>
+              <div class="card-header bg-dark text-light text-center" style="height: 70px"><h4>{{$tournament->title}}</h4></div>
                  <div class="card-body">
 		   
-                 <div class="text-center">{{$tour->description}}
+                 <div class="text-center">{{$tournament->description}}
                     <hr>
-                 <p >Numbers of Players {{$tour->playerNumber}}</p>
-                 <p >Numbers of matchs {{$tour->matchsNumber}}</p>
+                 <p >Numbers of Players: {{$tournament->playerNumber}}</p>
+                 <p >Numbers of matchs: {{$tournament->matchsNumber}}</p>
+                 <p>Numbers of joined Players:{{$subscriberNumber}} </p>
                 </div>
             <hr>
-            <form action="{{ route('handlerUserJoinTournement') }}" method="POST">
-                @csrf
-            <input type="hidden" name="userId" value="{{Auth::user()->id}}" >
-            <input type="hidden" name="tournamentId" value="{{$tour->id}}" >
-            <input type="submit" class="btn btn-success float-center" value="JOIN" >
-            </form>
+          
+           
           </div>
         </div>
       </div>
 
 
 
-      @endforeach
 </div>
 <hr>
 
@@ -139,8 +138,7 @@
 </div>
 
 
-@endif
-
+@endisset
 
     </body>
 </html>

@@ -18,6 +18,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('showUserCreateTournament') }}">Create Tournament</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('showUserTournament') }}">show your  Tournament </a>
+                </li>
  
       
         </div>

@@ -32,7 +32,7 @@ class MatchController extends Controller
          
                 
             if(auth()->user()->organizer==0){
-                if(Match::where('playerId',$request->input('userId'))->where('TournamentId', 'LIKE', $request->input('tournamentId'))->count() > 0) {
+                if(Match::where('playerId',$request->input('userId'))->where('TournamentId', $request->input('tournamentId'))->count() > 0) {
                     return redirect('');                               
                 }       
             
@@ -48,5 +48,6 @@ class MatchController extends Controller
     }
 
 
-    }
 
+
+}

@@ -5,6 +5,7 @@ namespace App\Modules\Tournament\Http\Controllers;
 use App\Modules\Tournament\Models\Tournament;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Modules\Match\Models\Match;
 
 class WebController extends Controller
 {
@@ -29,8 +30,12 @@ class WebController extends Controller
      */
 
     public function showUserCreateTournament(){
-
+        if(auth()->user()->organizer==1){
         return view ("Tournament::create");
+        }
+        else{
+            return redirect('tournament');
+        }
     }
 
      /**
@@ -40,7 +45,8 @@ class WebController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function handleUserAddTournament(Request $request){
-
+        
+        if(auth()->user()->organizer==1){
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
@@ -66,5 +72,57 @@ class WebController extends Controller
             $tournament->price = $request->input('price');
             $tournament->save();
             return redirect('tournament')->with('success', 'Tournament created');
+        
+    }
+    else{
+        return redirect('tournament');
+    }
+}
+    /**
+     * Display Tournament of organizer
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function showUserTournament(){
+
+       
+
+
+        if(auth()->user()->organizer==1){
+             
+            $tournament=Tournament::all()->where('idOrganizer',auth()->user()->id);
+            return view("Tournament::show")->with('tournament',$tournament);
         }
+        else{
+            return redirect ('tournament');
+        }
+
+}
+
+    /**
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+
+    public function showOrganizerTournamentById($id){
+
+        if(auth()->user()->organizer==1){
+            $subscriberNumber=Match::where('TournamentId', $id)->count() ;
+            $tournament=Tournament::find($id);
+            return view("Tournament::showId",compact('subscriberNumber','tournament'));
+        }
+        else{
+            return redirect ('tournament');
+        }
+
+}
+
+
+
+
+
+
 }

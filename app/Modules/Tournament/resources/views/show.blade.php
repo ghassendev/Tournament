@@ -58,7 +58,7 @@
                         <a class="nav-link" href="{{ route('showUserListTournament') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('showUserCreateTournament') }}">Create  Tournament</a>
+                        <a class="nav-link" href="{{ route('showUserCreateTournament') }}">Create Tournament </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('showUserTournament') }}">show your  Tournament </a>
@@ -102,7 +102,9 @@
 
 
 
+        @isset($tournament)
 
+                  
         @if(count($tournament)>0)
         <div class="row">
           @foreach ($tournament as $tour)
@@ -118,12 +120,9 @@
                  <p >Numbers of matchs {{$tour->matchsNumber}}</p>
                 </div>
             <hr>
-            <form action="{{ route('handlerUserJoinTournement') }}" method="POST">
-                @csrf
-            <input type="hidden" name="userId" value="{{Auth::user()->id}}" >
-            <input type="hidden" name="tournamentId" value="{{$tour->id}}" >
-            <input type="submit" class="btn btn-success float-center" value="JOIN" >
-            </form>
+         
+            <a href="/tournament/tour/{{$tour->id}} " class="btn btn-success float-center"  >Details</a>
+            
           </div>
         </div>
       </div>
@@ -140,6 +139,7 @@
 
 
 @endif
+@endisset
 
 
     </body>
