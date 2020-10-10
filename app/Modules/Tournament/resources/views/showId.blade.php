@@ -112,23 +112,32 @@
                  <p >Numbers of Players: {{$tournament->playerNumber}}</p>
                  <p >Numbers of matchs: {{$tournament->matchsNumber}}</p>
                  <p>Numbers of joined Players:{{$subscriberNumber}} </p>
-                 <form action="" method="post">
-                    <select name="" id="">
+                 <form action="{{route('handleUserAddPlayerToMatch') }}" method="post">
+                    <input type="hidden" value="{{$tournament->id}}" name="tournamentId">
+
+                    <select name="playerId" id="playerId">
                         @foreach ($playersID as $player)
-                        <option><p>Players Id: {{$player->playerId}}</p></option>
+                        <option value="{{$player->playerId}}"><p>Player Id: {{$player->playerId}}</p></option>
                         @endforeach
                         
                     </select>
                     <br>
-                    <select name="" id="">
-                        @for ($i = 0; $i < $count; $i++)
-                            
+                  
+                    <select name="matchNumber" id="matchNumber">
+                        @for ($i = 1; $i <= $tournament->matchsNumber; $i++)
+                    <option><p>MatchNumber {{$i}}</p></option>
                         @endfor
-                        <option><p>MatchNumber</p></option>
-                        
                         
                     </select>
-                   
+                    <br>
+                    <select name="treeLevel" id="treeLevel">
+                        @for ($i = 1; $i <= $tournament->nbTree; $i++)
+                    <option><p>Tree level {{$i}}</p></option>
+                        @endfor
+                        
+                    </select>
+                    <br>
+                   <input type="submit" class="btn btn-success" value="Send">
              
                  </form>
                      
